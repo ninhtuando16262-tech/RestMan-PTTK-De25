@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Trang chủ khách hàng - RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 600px;">
+    <!-- Khung chính xác theo bản vẽ wireframe ảnh 2 của đề bài -->
+    <div class="winform-title" style="font-size: 20px;">
+        Trang chủ khách hàng
+    </div>
+
+    <div style="padding: 10px 0 20px 0;">
+        <!-- Ô 1: Tìm kiếm thông tin món ăn -->
+        <a href="/tim-kiem-mon-an" class="winform-box-btn" style="border: 2px solid #000000; font-weight: bold; background-color: #f7f7f7;">
+            Tìm kiếm thông tin món ăn
+        </a>
+
+        <!-- Ô 2: Đặt bàn trực tuyến -->
+        <a href="javascript:void(0)" onclick="alert('Chức năng Đặt bàn trực tuyến')" class="winform-box-btn" style="border: 1px solid #000000;">
+            Đặt bàn trực tuyến
+        </a>
+
+        <!-- Ô 3: Đặt món trực tuyến -->
+        <a href="javascript:void(0)" onclick="alert('Chức năng Đặt món trực tuyến')" class="winform-box-btn" style="border: 1px solid #000000;">
+            Đặt món trực tuyến
+        </a>
+    </div>
+
+    <!-- Thông tin khách hàng dạng ô WinForm GroupBox đơn giản -->
+    <div class="winform-groupbox">
+        <div class="winform-groupbox-title">Thông tin khách hàng</div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 120px; padding: 4px 0;">Họ và tên:</td>
+                <td><strong>{{ user.ten }}</strong></td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;">Số điện thoại:</td>
+                <td>{{ user.sdt }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;">Thẻ thành viên:</td>
+                <td>THE-VIP-001 (Hạng Vàng)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

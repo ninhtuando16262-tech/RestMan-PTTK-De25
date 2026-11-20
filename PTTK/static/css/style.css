@@ -1,0 +1,205 @@
+/* ====================================================================
+   GIAO DIỆN PHONG CÁCH WINFORM / DẠNG Ô BẢN VẼ DỰ ÁN PTTK
+   Đặc điểm:
+   - Các ô viền đen/xám rõ ràng, không nền màu mè
+   - Chữ đen tiêu chuẩn (Segoe UI / Tahoma / Arial)
+   - Bảng dạng DataGridView / JTable với viền kẻ ô hoàn chỉnh
+   - Nút bấm dạng WinForm Button hình chữ nhật
+   ==================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #000000;
+    margin: 0;
+    padding: 20px 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Thanh điều hướng / Menu Bar kiểu WinForm Window Menu */
+.winform-menubar {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 6px 12px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.winform-menubar a {
+    color: #000000;
+    text-decoration: none;
+    padding: 4px 10px;
+    margin-right: 5px;
+    border: 1px solid transparent;
+}
+
+.winform-menubar a:hover, .winform-menubar a.active {
+    border: 1px solid #000000;
+    background-color: #e5e5e5;
+}
+
+/* Khung cửa sổ chính WinForm Window / Form Box */
+.winform-window {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    padding: 20px;
+    margin: 0 auto 20px auto;
+    max-width: 900px;
+    box-shadow: none;
+}
+
+/* Tiêu đề cửa sổ WinForm (Căn giữa, chữ đen, in đậm, không nền màu) */
+.winform-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #000000;
+    text-transform: none;
+}
+
+/* Nút dạng ô chữ nhật WinForm Button */
+.winform-btn {
+    display: inline-block;
+    padding: 6px 16px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: normal;
+    color: #000000;
+    background-color: #f0f0f0;
+    border: 1px solid #000000;
+    border-radius: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.winform-btn:hover {
+    background-color: #e0e0e0;
+    color: #000000;
+}
+
+.winform-btn:active {
+    background-color: #d0d0d0;
+}
+
+/* Các ô chức năng dạng khối chữ nhật lớn (Bám sát ảnh 2 của đề bài) */
+.winform-box-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 10px;
+    margin-bottom: 12px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0;
+}
+
+.winform-box-btn:hover {
+    background-color: #f5f5f5;
+    color: #000000;
+    border-color: #000000;
+}
+
+/* Ô nhập liệu WinForm TextBox */
+.winform-input {
+    width: 100%;
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 0;
+    outline: none;
+}
+
+.winform-input:focus {
+    border-color: #000000;
+    background-color: #ffffff;
+}
+
+/* Bảng dữ liệu WinForm DataGridView / JTable: Ô lưới viền đen hoàn toàn */
+.winform-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background-color: #ffffff;
+    font-size: 13px;
+}
+
+.winform-table th, .winform-table td {
+    border: 1px solid #000000;
+    padding: 6px 10px;
+    text-align: left;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.winform-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.winform-table tr:hover td {
+    background-color: #f7f7f7;
+}
+
+/* Khung chi tiết / GroupBox kiểu WinForm */
+.winform-groupbox {
+    border: 1px solid #000000;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+}
+
+.winform-groupbox-title {
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: -22px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 0 6px;
+    border: 1px solid #000000;
+}
+
+/* Thông báo WinForm MessageBox */
+.winform-msgbox {
+    border: 1px solid #000000;
+    padding: 12px;
+    margin: 15px 0;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.winform-msgbox-error {
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    font-weight: 500;
+}
+
+/* Thanh Footer */
+.winform-footer {
+    text-align: center;
+    font-size: 12px;
+    color: #555555;
+    margin-top: 20px;
+    border-top: 1px solid #cccccc;
+    padding-top: 10px;
+}

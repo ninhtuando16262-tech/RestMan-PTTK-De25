@@ -1,0 +1,396 @@
+﻿I.  Đặc tả
+1.          Bảng từ khóa
+Con người
+	Hoạt động của con người
+	Vật đối tượng
+	Thành viên
+Nhân Viên
+Khách hàng
+Nhân viên quản lý
+Nhân viên bán hàng
+Nhân viên kho
+	Xem các loại thống kê
+Quản lý thông tin món ăn
+Lên menu món ăn dạng combo
+Nhập nguyên liệu
+Quản lý thông tin nhà cung cấp
+Nhận khách
+Nhận gọi món
+Nhận thanh toán tại bàn
+Làm thẻ thành viên
+Xác nhận thông tin đặt bàn trực tuyến
+Xác nhận thông tin đặt món trực tuyến
+Tìm kiếm thông tin món ăn
+Đặt bàn trực tuyến
+Đặt món trực tuyến
+ 
+	Món ăn
+Nguyên liệu
+Nhà cung cấp
+Combo
+Bàn
+Thẻ thành viên
+	 
+Số TT
+	Tên
+	Giải thích
+	Nhóm các khái niệm liên quan đến con người
+	1
+	Thành viên
+ 
+	Người có tài khoản và thẩm quyền để đăng nhập vào hệ thống, thực hiện các chức năng được cho phép.
+	2
+	Nhân Viên
+	Là thành viên làm việc tại nhà hàng.
+	3
+	Khách hàng
+	Là thành viên sử dụng những dịch vụ của nhà hàng.
+	4
+	Nhân viên quản lý
+	Là nhân viên xem các loại thống kê: món ăn, nguyên liệu, khách hàng và nhà cung cấp; quản lí thông tin món ăn, lên menu món ăn dạng combo.
+	5
+	 
+	 
+	6
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+2.          Mô tả bằng ngôn ngữ tự nhiên
+- Mục đích của hệ thống : Hệ thống trang web phục vụ công tác quản lí nhà hàng.
+- Phạm vi hệ thống:
++ Thành viên:
+Đăng nhập
+Đăng xuất
++ Nhân viên quản lý:
+Được thực hiện các chức năng nhân viên
+Xem các loại thống kê: món ăn, nguyên liệu, khách hàng và nhà cung cấp
+Quản lý thông tin món ăn
+Thêm món ăn dạng combo
++ Nhân viên kho:
+Được thực hiện các chức năng như thành viên
+Nhập nguyên liệu
+Quản lý thông tin nhà cung cấp
++ Nhân viên bán hàng:
+Được thực hiện các chức năng như thành viên
+Nhận khách
+Nhận gọi món
+Nhận thanh toán tại bàn
+Làm thẻ thành viên
+Xác nhận thông tin đặt món trực tuyến
+Xác nhận thông tin đặt bàn trực tuyến
++ Khách hàng:
+Được thực hiện các chức năng như thành viên
+Tìm kiếm thông tin món ăn
+Đặt bàn trực tuyến
+Đặt món trực tuyến
+- Hoạt động nghiệp vụ của các chức năng: ở đây mô tả chi tiết 2 modul là tìm kiếm thông tin món ăn và thống kê nhà cung cấp theo số lượng hàng nhập
+ 
++ Khách hàng tìm kiếm thông tin món ăn : Khách hàng đăng nhập vào hệ thống -> Chọn chức năng tìm thông tin món ăn -> hệ thống hiện ra danh sách tất cả món ăn -> Khách hàng nhập tên món ăn -> hệ thống hiện ra danh sách món ăn theo từ khóa -> Khách hàng chọn một món ăn -> hệ thống hiện ra thông tin chi tiết món ăn đó.
++ Thống kê nhà cung cấp theo số lượng hàng nhập: Nhân viên quản lý đăng nhập vào hệ thống -> Chọn chức năng xem báo cáo -> Chọn thống kê nhà cung cấp theo lượng nhập ->
+3. Biểu đồ usecase tổng quan và mô tả 
+
+
+  
+
+4. Biểu đồ usecase chi tiết và mô tả 
+a. Module Tìm kiếm thông tin món ăn 
+  
+
+- Mô tả usecase:
+ + Tìm kiếm thông tin món ăn : UC này cho phép khách hàng tìm kiếm món ăn theo từ khóa và xem thông tin chi tiết của món ăn đó.
+b. Module thống kê nhà cung cấp theo số lượng hàng nhập
+  
+
+- Mô tả usecase:
+ + Thống kê nhà cung cấp theo lượng nhập : UC này cho phép nhân viên quản lý xem thống kê các nhà cung cấp theo số lượng hàng nhập trong khoảng thời gian chọn, xem chi tiết các lần nhập và hóa đơn nhập tương ứng.
+II. Phân tích
+1. Kịch bản cho module
+1. Module tìm kiếm thông tin món ăn 
+
+
+Use case
+	Tìm kiếm thông tin món ăn 
+	Actor
+	Khách hàng 
+	Tiền điều kiện
+	Khách hàng đăng nhập thành công 
+	Hậu điều kiện
+	Khách hàng xem được thông tin món ăn 
+	Kịch bản chính
+	1. Khách hàng chọn menu tìm kiếm thông tin món ăn trên giao diện. 
+2. Hệ thống hiển thị giao diện tìm kiếm món ăn. 
+3. Khách hàng nhập tên (từ khóa) món ăn cần tìm và nhấn nút Tìm kiếm. 
+4. Hệ thống truy vấn cơ sở dữ liệu và hiển thị danh sách các món ăn có tên chứa từ khóa vừa nhập 
+5. Khách hàng nhấp (click) chọn một món ăn trong danh sách kết quả. 
+6. Hệ thống lấy dữ liệu và hiển thị đầy đủ thông tin chi tiết của món ăn đó. 
+	Ngoại lệ
+	3. Nếu khách hàng chưa nhập từ khóa mà đã nhấn Tìm kiếm, hệ thống hiển thị toàn bộ danh sách món ăn hiện có (hoặc thông báo yêu cầu nhập từ khóa tìm kiếm). 
+4. Nếu trong cơ sở dữ liệu không có món ăn nào chứa từ khóa khách hàng đã nhập, hệ thống hiển thị thông báo "Không tìm thấy món ăn phù hợp" và kết thúc chức năng 
+	
+
+b.  Module thống kê nhà cung cấp theo số lượng hàng nhập
+
+
+
+
+
+
+Use case
+	Thống kê nhà cung cấp theo lượng nhập  
+	Actor
+	Nhân viên quản lý 
+	Tiền điều kiện
+	Nhân viên quản lý đã đăng nhập thành công vào hệ thống 
+	Hậu điều kiện
+	Nhân viên quản lý xem được thống kê nhà cung cấp theo lượng nhập, chi tiết các lần nhập và hóa đơn nhập tương ứng
+	Kịch bản chính
+	1. Nhân viên chọn menu xem báo cáo trên giao diện hệ thống. 
+2. Hệ thống hiển thị giao diện báo cáo thống kê. 
+3. Nhân viên chọn chức năng Thống kê nhà cung cấp theo lượng nhập. 
+4. Nhân viên chọn khoảng thời gian bắt đầu (BĐ) và kết thúc (KT) cần thống kê, sau đó nhấn Xem thống kê. 
+5. Hệ thống truy vấn dữ liệu và hiển thị danh sách thống kê các nhà cung cấp theo số lượng hàng nhập trong khoảng thời gian đã chọn. 
+6. Nhân viên nhấp chọn một nhà cung cấp trong danh sách thống kê. 
+7. Hệ thống hiển thị thông tin chi tiết các lần nhập nguyên liệu từ nhà cung cấp đó. 
+8. Nhân viên chọn xem một lần nhập nguyên liệu cụ thể. 
+9. Hệ thống truy xuất và hiển thị hóa đơn nhập hàng tương ứng với lần nhập đã chọn. 
+	Ngoại lệ
+	4. Nếu nhân viên chọn ngày bắt đầu lớn hơn ngày kết thúc (hoặc bỏ trống thời gian), hệ thống hiển thị thông báo lỗi "Khoảng thời gian thống kê không hợp lệ" và yêu cầu chọn lại. 
+5. Nếu trong khoảng thời gian đã chọn không phát sinh giao dịch nhập hàng nào từ các nhà cung cấp, hệ thống hiển thị thông báo "Không có dữ liệu thống kê trong khoảng thời gian này" và kết thúc luồng xử lý. 
+	
+
+2. Trích lớp thực thể và vẽ sơ đồ lớp thực thể toàn hệ thống 
+a. Trích lớp thực thể 
+i. Mô tả: Hệ thống quản lý nhà hàng RestMan được thiết kế để hỗ trợ các nhân viên quản lý, nhân viên bán hàng, nhân viên kho và khách hàng trong quá trình vận hành và phục vụ. Nhân viên quản lý có thể theo dõi các loại thống kê về món ăn, nguyên liệu, khách hàng và nhà cung cấp (xem thống kê nhà cung cấp theo lượng nhập, xem chi tiết các lần nhập và hóa đơn nhập tương ứng); quản lý thông tin món ăn và lên menu món ăn dạng combo. Nhân viên kho có thể nhập nguyên liệu từ nhà cung cấp và quản lý thông tin nhà cung cấp. Nhân viên bán hàng có thể ghi nhận thông tin về việc nhận khách, nhận gọi món và nhận thanh toán tại bàn; làm thẻ thành viên cho khách hàng có nhu cầu; xác nhận thông tin đặt bàn và đặt món trực tuyến. Khách hàng có thể tìm kiếm thông tin món ăn (tra cứu theo từ khóa và xem thông tin chi tiết món ăn), đặt bàn và đặt món trực tuyến. Khi khách hàng đặt bàn, gọi món hoặc combo online/tại nhà hàng, nhân viên bán hàng tạo hóa đơn. 
+ii. Trích các danh từ xuất hiện trong đoạn văn: 
+* Các danh từ liên quan đến người: nhân viên quản lý, nhân viên kho, nhân viên bán hàng, khách hàng. 
+* Các danh từ liên quan đến vật: món ăn, nguyên liệu, nhà cung cấp, combo, thẻ thành viên, bàn, hóa đơn, hóa đơn nhập 
+* Các danh từ liên quan đến thông tin: thống kê món ăn, thống kê nguyên liệu, thống kê khách hàng, thống kê nhà cung cấp, thông tin gọi món tại quán, thông tin đặt bàn, thông tin đặt món, thông tin lần nhập nguyên liệu .
+iii. Đánh giá và lựa chọn các danh từ làm lớp thực thể hoặc thuộc tính: 
+* Các danh từ trừu tượng: hệ thống, thống kê, thông tin  loại 
+* Các danh từ liên quan đến người: 
+   * Thành viên hệ thống (trừu tượng)  lớp Thanhvien: mã thành viên, tên, tên đăng nhập, mật khẩu, ngày sinh, địa chỉ, email, số điện thoại, vai trò. 
+   * Nhân viên (trừu tượng)  lớp Nhanvien: kế thừa Thanhvien, có thêm vị trí công việc. 
+   * Nhân viên quản lý  lớp Nhanvienquanly: kế thừa Nhanvien. 
+   * Nhân viên kho  lớp Nhanvienkho: kế thừa Nhanvien. 
+   * Nhân viên bán hàng  lớp Nhanvienbanhang: kế thừa Nhanvien. 
+   * Khách hàng  lớp Khachhang: kế thừa Thanhvien. 
+      * Các danh từ liên quan đến vật: 
+      * Món ăn  lớp Monan: mã món, tên món, loại, khẩu phần, giá tiền, mô tả. 
+      * Nguyên liệu  lớp Nguyenlieu: mã nguyên liệu, tên nguyên liệu, phân loại, số lượng tồn, đơn vị tính, đơn giá, hạn sử dụng. 
+      * Nhà cung cấp  lớp Nhacungcap: mã nhà cung cấp, tên, địa chỉ, số điện thoại, email, mô tả. 
+      * Combo  lớp Combo: mã combo, tên combo, mô tả, giá tiền. 
+      * Thẻ thành viên  lớp The: mã thẻ, tên khách hàng, email, hạng thẻ, ngày tạo thẻ, điểm tích lũy. 
+      * Bàn  lớp Ban: mã bàn, số bàn, tình trạng, giờ được đặt. 
+      * Hóa đơn bán hàng  lớp Hoadon: mã hóa đơn, khách hàng, ngày xuất hóa đơn, nhân viên bán hàng phụ trách, đơn đặt, tổng tiền, tình trạng thanh toán. 
+      * Hóa đơn nhập hàng  lớp Hoadonnhap: mã hóa đơn nhập, ngày nhập, nhân viên kho phụ trách, nhà cung cấp, tổng tiền, ghi chú. 
+         * Các danh từ liên quan đến thông tin:
+         * Thống kê món ăn  lớp TKmonan: kế thừa Monan, bổ sung ngày bắt đầu, ngày kết thúc, tổng số lượng bán, doanh thu. 
+         * Thống kê nguyên liệu  lớp TKnguyenlieu: kế thừa Nguyenlieu, bổ sung ngày bắt đầu, ngày kết thúc, tổng lượng nhập/xuất. 
+         * Thống kê khách hàng  lớp TKkhachhang: kế thừa Khachhang, bổ sung ngày bắt đầu, ngày kết thúc, doanh thu. 
+         * Thống kê nhà cung cấp  lớp TKnhacungcap: kế thừa Nhacungcap, bổ sung ngày bắt đầu, ngày kết thúc, tổng số lượng hàng nhập, số lần nhập, tổng tiền nhập (phục vụ trực tiếp module thống kê nhà cung cấp theo lượng nhập). 
+         * Đơn đặt hàng / đặt bàn  lớp Dondat: mã đơn đặt, khách hàng, bàn, ngày đặt, giờ đặt, trạng thái xác nhận. 
+iv. Xác định số lượng quan hệ giữa các thực thể: 
+            * Một khách hàng chỉ có một thẻ, một thẻ chỉ chứa thông tin của 1 khách hàng  Khachhang – The là quan hệ 1 - 1. 
+            * Một khách hàng có thể đặt nhiều bàn, một bàn được đặt bởi nhiều khách hàng tại nhiều thời điểm  Khachhang – Ban là quan hệ n - n  đề xuất lớp trung gian Dondat kết nối giữa 1 khách hàng và 1 bàn. 
+            * Một lần đặt hàng xuất ra một hóa đơn, một hóa đơn chứa thông tin của lần đặt hàng  Dondat – Hoadon là quan hệ 1 - 1. 
+            * Một lần đặt hàng có thể chứa nhiều món ăn, một món ăn có thể được đặt trong nhiều lần đặt hàng  Dondat – Monan là quan hệ n - n  đề xuất lớp trung gian Monangoi để xác định duy nhất món ăn và số lượng trong lần đặt hàng. 
+            * Một lần đặt hàng có thể chứa nhiều combo, một combo có thể được đặt trong nhiều lần đặt hàng  Dondat – Combo là quan hệ n - n  đề xuất lớp trung gian Combogoi để xác định duy nhất combo và số lượng trong lần đặt hàng. 
+            * Một món ăn có thể nằm trong nhiều combo, một combo có thể chứa nhiều món ăn  Monan – Combo là quan hệ n - n  đề xuất lớp trung gian CBChitiet xác định duy nhất món ăn trong một combo. 
+            * Một nhân viên bán hàng có thể xử lý nhiều hóa đơn  Nhanvienbanhang – Hoadon là quan hệ 1 - n. 
+            * Một nhà cung cấp có thể thực hiện nhiều lần giao hàng (hóa đơn nhập), một hóa đơn nhập chỉ thuộc về một nhà cung cấp  Nhacungcap – Hoadonnhap là quan hệ 1 - n. 
+            * Một nguyên liệu có thể được nhập trong nhiều hóa đơn nhập, một hóa đơn nhập có thể nhập nhiều loại nguyên liệu  Nguyenlieu – Hoadonnhap là quan hệ n - n  đề xuất lớp trung gian Hoadonnhapchitiet xác định duy nhất 1 nguyên liệu (kèm số lượng nhập, đơn giá nhập) trong 1 lần nhập. 
+            * Một nhân viên kho có thể lập và xử lý nhiều hóa đơn nhập  Nhanvienkho – Hoadonnhap là quan hệ 1 - n. 
+v. Xác định quan hệ đối tượng giữa các thực thể: 
+               * Nhanvienquanly, Nhanvienbanhang, Nhanvienkho kế thừa từ lớp Nhanvien. 
+               * Khachhang và Nhanvien kế thừa từ lớp Thanhvien. 
+               * Khachhang và Ban liên kết tạo ra Dondat duy nhất 
+               * Dondat và Monan liên kết tạo ra Monangoi duy nhất. 
+               * Dondat và Combo liên kết tạo ra Combogoi duy nhất. 
+               * Monan và Combo liên kết tạo ra CBChitiet duy nhất. 
+               * Nguyenlieu và Hoadonnhap liên kết tạo ra Hoadonnhapchitiet duy nhất. 
+               * Các lớp thống kê (TKmonan, TKnguyenlieu, TKkhachhang, TKnhacungcap) kế thừa từ các lớp thực thể tương ứng (Monan, Nguyenlieu, Khachhang, Nhacungcap). 
+b. Sơ đồ lớp thực thể toàn hệ thống 
+  
+
+3. Trích và vẽ biểu đồ lớp cho module
+a. Module tìm kiếm thông tin món ăn 
+– Phân tích tĩnh: 
+Giao diện chính của khách hàng  lớp GDChinhKH, gồm các thành phần: 
+               * Nút tìm kiếm thông tin món ăn : kiểu submit 
+               * Nút đặt món trực tuyến : kiểu submit 
+               * Nút đặt bàn trực tuyến : kiểu submit 
+Giao diện danh sách món ăn  lớp GDThongTinMonAn, gồm các thành phần: 
+               * Nhập từ khóa : input 
+               * Danh sách món ăn theo từ khóa : output, link 
+               * Nút quay lại : kiểu submit 
+               * Nút tìm kiếm : kiểu submit 
+Để có danh sách món ăn như trên, cần xử lý dưới hệ thống: 
+               * Tìm tên món ăn 
+               * Input : từ khóa 
+               * Output : danh sách món ăn chứa từ khóa 
+               * Đề xuất phương thức timKiemMonan(), gán cho lớp MonAn. 
+Giao diện thông tin chi tiết món ăn  lớp GDThongTinChiTiet, gồm các thành phần: 
+               * Thông tin món ăn : output 
+               * Nút quay lại : kiểu submit 
+Để có thông tin chi tiết về món ăn, cần xử lý dưới hệ thống: 
+               * Tìm món ăn theo mã 
+               * Input : mã món ăn 
+               * Output : thông tin chi tiết về món ăn 
+               * Đề xuất phương thức getChitietMonan(), gán cho lớp MonAn. 
+– Biểu đồ lớp: 
+  
+
+b. Modul thống kê nhà cung cấp theo số lượng hàng nhập 
+– Phân tích tĩnh: 
+Giao diện chính của nhân viên quản lý  lớp GDChinhQL, gồm các thành phần: 
+               * Chọn xem thống kê : kiểu submit 
+               * Chọn quản lý thông tin món ăn : kiểu submit 
+               * Chọn quản lý combo : kiểu submit 
+Giao diện chọn loại báo cáo thống kê  lớp GDChonThongKe, gồm các thành phần: 
+               * Chọn thống kê món ăn : kiểu submit 
+               * Chọn thống kê nguyên liệu : kiểu submit 
+               * Chọn thống kê khách hàng : kiểu submit 
+               * Chọn thống kê nhà cung cấp theo lượng nhập : kiểu submit 
+               * Nút quay lại : kiểu submit 
+Giao diện thống kê nhà cung cấp theo lượng nhập  lớp GDTKNhaCungCap, gồm các thành phần: 
+               * Nhập ngày bắt đầu : input 
+               * Nhập ngày kết thúc : input 
+               * Nút xem thống kê : kiểu submit 
+               * Danh sách thống kê nhà cung cấp theo lượng nhập : output, link 
+               * Nút quay lại : kiểu submit 
+Để có danh sách thống kê nhà cung cấp theo lượng nhập trong khoảng thời gian chọn, cần xử lý dưới hệ thống: 
+               * Thống kê nhà cung cấp theo số lượng hàng nhập 
+               * Input : ngày bắt đầu, ngày kết thúc 
+               * Output : danh sách thống kê nhà cung cấp (TKnhacungcap) 
+               * Đề xuất phương thức getTKNhaCungCap(), gán cho lớp TKnhacungcap. 
+Giao diện chi tiết các lần nhập của nhà cung cấp  lớp GDChiTietLanNhapNCC, gồm các thành phần: 
+               * Thông tin nhà cung cấp : output 
+               * Danh sách các lần nhập (hóa đơn nhập) của nhà cung cấp : output, link 
+               * Nút quay lại : kiểu submit 
+Để lấy danh sách các lần nhập nguyên liệu của nhà cung cấp đã chọn, cần xử lý dưới hệ thống: 
+               * Lấy danh sách hóa đơn nhập theo nhà cung cấp và khoảng thời gian 
+               * Input : mã nhà cung cấp, ngày bắt đầu, ngày kết thúc 
+               * Output : danh sách các lần nhập (Hoadonnhap) 
+               * Đề xuất phương thức getDSLanNhap(), gán cho lớp Hoadonnhap. 
+Giao diện hóa đơn nhập nguyên liệu  lớp GDHoaDonNhap, gồm các thành phần: 
+               * Thông tin chung hóa đơn nhập (mã hóa đơn, ngày nhập, nhà cung cấp, nhân viên kho, tổng tiền) : output 
+               * Danh sách nguyên liệu chi tiết trong lần nhập : output 
+               * Nút quay lại : kiểu submit 
+Để hiển thị chi tiết hóa đơn nhập tương ứng với lần nhập đã chọn, cần xử lý dưới hệ thống: 
+               * Lấy thông tin chi tiết hóa đơn nhập 
+               * Input : mã hóa đơn nhập 
+               * Output : thông tin hóa đơn nhập và danh sách chi tiết nguyên liệu nhập (Hoadonnhapchitiet) 
+               * Đề xuất phương thức getChiTietHoaDonNhap(), gán cho lớp Hoadonnhapchitiet. 
+– Biểu đồ lớp: 
+  
+
+4. Biểu đồ trạng thái 
+a. Module Tìm kiếm thông tin món ăn 
+  
+
+b. Module Thống kê nhà cung cấp theo số lượng hàng nhập 
+  
+
+5. Kịch bản chi tiết và biểu đồ giao tiếp cho module
+a. Module Tìm kiếm thông tin món ăn
+– Kịch bản chi tiết:
+               1. Tại giao diện chính của Khách hàng, sau khi đăng nhập, khách hàng chọn chức năng tìm kiếm thông tin món ăn[cite: 1, 11].
+               2. Lớp GDChinhKH gọi lớp GDThongTinMonAn.
+               3. Lớp GDThongTinMonAn hiển thị giao diện tìm kiếm cho khách hàng[cite: 2, 11].
+               4. Khách hàng nhập từ khóa và chọn nút tìm kiếm (subTimkiem)[cite: 1, 11].
+               5. Lớp GDThongTinMonAn gọi lớp MonAn yêu cầu tìm danh sách món ăn theo từ khóa.
+               6. Lớp MonAn gọi phương thức timKiemMonan() để tìm kiếm các món ăn có tên chứa từ khóa.
+               7. Lớp MonAn trả về danh sách món ăn cho lớp GDThongTinMonAn.
+               8. Lớp GDThongTinMonAn hiển thị danh sách món ăn (outlinkDanhsachmon) cho khách hàng.
+               9. Khách hàng click chọn 1 món ăn trong danh sách[cite: 1, 11].
+               10. Lớp GDThongTinMonAn gọi lớp GDThongTinChiTiet.
+               11. Lớp GDThongTinChiTiet gọi lớp MonAn yêu cầu lấy thông tin chi tiết món ăn.
+               12. Lớp MonAn gọi phương thức getChitietMonan() để lấy thông tin chi tiết món ăn được chọn.
+               13. Lớp MonAn trả về thông tin chi tiết món ăn cho lớp GDThongTinChiTiet.
+               14. Lớp GDThongTinChiTiet hiển thị thông tin chi tiết món ăn (outChitietmon) cho khách hàng.
+               15. Khách hàng chọn nút quay lại (subQuaylai).
+               16. Lớp GDThongTinChiTiet gọi lớp GDThongTinMonAn.
+               17. Lớp GDThongTinMonAn hiển thị lại cho khách hàng.
+               18. Khách hàng chọn nút quay lại (subQuaylai).
+               19. Lớp GDThongTinMonAn gọi lớp GDChinhKH.
+               20. Lớp GDChinhKH hiển thị cho khách hàng
+
+
+– Biểu đồ giao tiếp 
+   
+b. Module Thống kê nhà cung cấp theo số lượng hàng nhập 
+– Kịch bản chi tiết:
+               1. Tại giao diện chính của nhân viên quản lý, sau khi đăng nhập, nhân viên quản lý chọn chức năng xem thống kê (subXemthongke).
+               2. Lớp GDChinhQL gọi lớp GDChonThongKe.
+               3. Lớp GDChonThongKe hiển thị giao diện chọn loại báo cáo thống kê cho nhân viên quản lý.
+               4. Nhân viên quản lý chọn thống kê nhà cung cấp theo lượng nhập (subTKNhacungcap)[cite: 6, 11].
+               5. Lớp GDChonThongKe gọi lớp GDTKNhaCungCap.
+               6. Lớp GDTKNhaCungCap hiển thị giao diện thống kê nhà cung cấp theo lượng nhập cho nhân viên quản lý.
+               7. Nhân viên quản lý nhập ngày bắt đầu (inNgaybatdau), ngày kết thúc (inNgayketthuc) và nhấn nút xem thống kê (subXemthongke)
+               8. Lớp GDTKNhaCungCap gọi lớp TKnhacungcap yêu cầu lấy danh sách thống kê nhà cung cấp theo lượng nhập.
+               9. Lớp TKnhacungcap gọi phương thức getTKNhaCungCap() để thống kê nhà cung cấp theo số lượng hàng nhập trong khoảng thời gian đã chọn.
+               10. Lớp TKnhacungcap trả về danh sách thống kê nhà cung cấp cho lớp GDTKNhaCungCap.
+               11. Lớp GDTKNhaCungCap hiển thị danh sách thống kê nhà cung cấp (outlinkDanhsachNCC) cho nhân viên quản lý.
+               12. Nhân viên quản lý click chọn 1 nhà cung cấp trong danh sách
+               13. Lớp GDTKNhaCungCap gọi lớp GDChiTietLanNhapNCC.
+               14. Lớp GDChiTietLanNhapNCC gọi lớp Hoadonnhap yêu cầu lấy danh sách các lần nhập của nhà cung cấp đã chọn.
+               15. Lớp Hoadonnhap gọi phương thức getDSLanNhap() để lấy danh sách hóa đơn nhập theo nhà cung cấp và khoảng thời gian.
+               16. Lớp Hoadonnhap trả về danh sách các lần nhập cho lớp GDChiTietLanNhapNCC.
+               17. Lớp GDChiTietLanNhapNCC hiển thị thông tin nhà cung cấp (outThongtinNCC) và danh sách các lần nhập (outlinkDanhsachLannhap) cho nhân viên quản lý.
+               18. Nhân viên quản lý click xem 1 lần nhập nguyên liệu cụ thể
+               19. Lớp GDChiTietLanNhapNCC gọi lớp GDHoaDonNhap.
+               20. Lớp GDHoaDonNhap gọi lớp Hoadonnhapchitiet yêu cầu lấy thông tin chi tiết hóa đơn nhập.
+               21. Lớp Hoadonnhapchitiet gọi phương thức getChiTietHoaDonNhap() để lấy thông tin hóa đơn nhập và danh sách chi tiết nguyên liệu nhập.
+               22. Lớp Hoadonnhapchitiet trả về thông tin chi tiết hóa đơn nhập cho lớp GDHoaDonNhap.
+               23. Lớp GDHoaDonNhap hiển thị thông tin chung hóa đơn nhập (outThongtinHDNhap) và danh sách nguyên liệu chi tiết (outDanhsachNLNhap) cho nhân viên quản lý.
+               24. Nhân viên quản lý chọn nút quay lại (subQuaylai).
+               25. Lớp GDHoaDonNhap gọi lớp GDChiTietLanNhapNCC.
+               26. Lớp GDChiTietLanNhapNCC hiển thị cho nhân viên quản lý.
+               27. Nhân viên quản lý chọn nút quay lại (subQuaylai).
+               28. Lớp GDChiTietLanNhapNCC gọi lớp GDTKNhaCungCap.
+               29. Lớp GDTKNhaCungCap hiển thị cho nhân viên quản lý.
+               30. Nhân viên quản lý chọn nút quay lại (subQuaylai).
+               31. Lớp GDTKNhaCungCap gọi lớp GDChonThongKe.
+               32. Lớp GDChonThongKe hiển thị cho nhân viên quản lý.
+               33. Nhân viên quản lý chọn nút quay lại (subQuaylai).
+               34. Lớp GDChonThongKe gọi lớp GDChinhQL.
+               35. Lớp GDChinhQL hiển thị cho nhân viên quản lý.
+– Biểu đồ giao tiếp:
+
+
+  
+
+6. Sơ đồ tuần tự 
+a. Module Tìm kiếm thông tin món ăn 
+  
+
+b. Module Thống kê nhà cung cấp theo số lượng hàng nhập 
+  
+
+III. Thiết kế
+1. Thiết kế thực thể toàn hệ thống
+               * Bổ sung thuộc tính khóa chính (id : integer) cho tất cả các lớp thực thể, ngoại trừ các lớp kế thừa từ lớp khác (Nhanvien, Nhanvienquanly, Nhanvienbanhang, Nhanvienkho, Khachhang, TKmonan, TKnguyenlieu, TKkhachhang, TKnhacungcap).
+               * Bổ sung kiểu dữ liệu chuẩn Java (String, integer, Float, Date, Time) cho toàn bộ các thuộc tính của từng lớp thực thể.
+               * Chuyển đổi các quan hệ kết hợp (association) sang quan hệ chứa/tập hợp (aggregation – hình thoi rỗng) để chuẩn bị ánh xạ sang cơ sở dữ liệu:
+               * Quan hệ Khachhang – Dondat và Ban – Dondat chuyển thành Khachhang chứa Dondat (0..*) và Ban chứa Dondat (0..*).
+               * Quan hệ Dondat – Combo qua lớp trung gian Combogoi chuyển thành Dondat chứa Combogoi, Combogoi chứa Combo.
+               * Quan hệ Dondat – Monan qua lớp trung gian Monangoi chuyển thành Dondat chứa Monangoi, Monangoi chứa Monan.
+               * Quan hệ Monan – Combo qua lớp trung gian CBChitiet chuyển thành Combo chứa CBChitiet, CBChitiet chứa Monan.
+               * Quan hệ Nhacungcap – Hoadonnhap và Nhanvienkho – Hoadonnhap chuyển thành Nhacungcap chứa Hoadonnhap (0..*) và Nhanvienkho chứa Hoadonnhap (0..*).
+               * Quan hệ Nguyenlieu – Hoadonnhap qua lớp trung gian Hoadonnhapchitiet chuyển thành Hoadonnhap chứa Hoadonnhapchitiet, Hoadonnhapchitiet chứa Nguyenlieu.
+– Sơ đồ lớp thực thể:
+  
+
+2. Thiết kế CSDL toàn hệ thống

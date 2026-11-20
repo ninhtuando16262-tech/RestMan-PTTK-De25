@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Lịch sử các lần nhập - RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 850px;">
+    <div class="winform-title" style="font-size: 20px;">
+        Chi tiết các lần nhập của nhà cung cấp
+    </div>
+
+    <!-- Thông tin nhà cung cấp outThongtinNCC -->
+    <div class="winform-groupbox">
+        <div class="winform-groupbox-title">Thông tin nhà cung cấp</div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 140px; padding: 4px 0;"><strong>Tên nhà cung cấp:</strong></td>
+                <td><strong>{{ ncc.ten }}</strong> (Mã: {{ ncc.manhacungcap }})</td>
+                <td style="width: 140px; padding: 4px 0;"><strong>Thời gian thống kê:</strong></td>
+                <td>{{ ngaybatdau }} → {{ ngayketthuc }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;"><strong>Địa chỉ:</strong></td>
+                <td>{{ ncc.diachi }}</td>
+                <td style="padding: 4px 0;"><strong>Liên hệ:</strong></td>
+                <td>{{ ncc.sdt }} | {{ ncc.email }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;"><strong>Ghi chú NCC:</strong></td>
+                <td colspan="3">{{ ncc.mota }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Bảng danh sách các lần nhập outlinkDanhsachLannhap kiểu DataGridView -->
+    <div style="margin-top: 15px;">
+        <div style="margin-bottom: 6px;">
+            <strong>Danh sách các lần nhập (Hóa đơn nhập):</strong>
+        </div>
+
+        {% if danhsach_lannhap and danhsach_lannhap|length > 0 %}
+            <table class="winform-table">
+                <thead>
+                    <tr>
+                        <th style="width: 45px;">STT</th>
+                        <th style="width: 140px;">Mã phiếu nhập</th>
+                        <th style="width: 110px; text-align: center;">Ngày nhập</th>
+                        <th style="width: 140px;">Thủ kho phụ trách</th>
+                        <th style="width: 120px; text-align: right;">Tổng lượng (kg/đv)</th>
+                        <th style="width: 120px; text-align: right;">Tổng tiền (đ)</th>
+                        <th>Ghi chú</th>
+                        <th style="width: 100px; text-align: center;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hd in danhsach_lannhap %}
+                    <tr>
+                        <td style="text-align: center;">{{ loop.index }}</td>
+                        <td style="font-weight: bold;">{{ hd.mahoadonnhap }}</td>
+                        <td style="text-align: center;">{{ hd.ngaynhap }}</td>
+                        <td>{{ hd.nhanvienkho.ten }}</td>
+                        <td style="text-align: right; font-weight: bold;">{{ "{:,.1f}".format(hd.tong_soluong) }}</td>
+                        <td style="text-align: right; font-weight: bold;">{{ "{:,.0f}".format(hd.tongtien) }}</td>
+                        <td>{{ hd.ghichu }}</td>
+                        <td style="text-align: center;">
+                            <!-- Link outlinkDanhsachLannhap: click chọn xem 1 lần nhập cụ thể -->
+                            <a href="/hoa-don-nhap?id_hd={{ hd.id }}&id_ncc={{ ncc.id }}&ngaybatdau={{ ngaybatdau }}&ngayketthuc={{ ngayketthuc }}" class="winform-btn" style="padding: 2px 6px; font-size: 12px;">
+                                Xem hóa đơn
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="winform-msgbox" style="text-align: center;">
+                Không có lần nhập hàng nào từ nhà cung cấp này trong khoảng thời gian đã chọn.
+            </div>
+        {% endif %}
+    </div>
+
+    <div style="margin-top: 20px; text-align: right; border-top: 1px solid #000000; padding-top: 12px;">
+        <!-- Nút subQuaylai -->
+        <form action="/thong-ke-nha-cung-cap" method="GET" style="display: inline;">
+            <input type="hidden" name="inNgaybatdau" value="{{ ngaybatdau }}">
+            <input type="hidden" name="inNgayketthuc" value="{{ ngayketthuc }}">
+            <input type="hidden" name="subXemthongke" value="1">
+            <button type="submit" id="subQuaylai" name="subQuaylai" class="winform-btn" style="padding: 6px 20px;">
+                Quay lại Thống kê NCC
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

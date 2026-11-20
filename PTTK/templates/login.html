@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Đăng Nhập - Hệ Thống RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 500px;">
+    <div class="winform-title">ĐĂNG NHẬP HỆ THỐNG</div>
+
+    {% if error %}
+    <div class="winform-msgbox winform-msgbox-error" style="margin-bottom: 15px;">
+        <strong>Lỗi:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+    <form action="/login" method="POST" style="margin-bottom: 20px;">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+            <tr>
+                <td style="width: 120px; padding: 6px 0;"><strong>Tên đăng nhập:</strong></td>
+                <td>
+                    <input type="text" name="tendangnhap" class="winform-input" value="{{ tendangnhap or '' }}" required autofocus>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 6px 0;"><strong>Mật khẩu:</strong></td>
+                <td>
+                    <input type="password" name="matkhau" class="winform-input" required>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="padding-top: 10px;">
+                    <button type="submit" class="winform-btn" style="padding: 6px 20px; font-weight: bold;">
+                        Đăng Nhập
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div class="winform-groupbox">
+        <div class="winform-groupbox-title">Đăng nhập nhanh theo vai trò</div>
+        <div style="display: grid; gap: 8px;">
+            <a href="/login-as?role=KhachHang" class="winform-btn" style="text-align: left; padding: 8px 12px;">
+                <strong>1. Khách hàng</strong> (Vào chức năng tìm kiếm món ăn - Module 1)
+            </a>
+            <a href="/login-as?role=QuanLy" class="winform-btn" style="text-align: left; padding: 8px 12px;">
+                <strong>2. Nhân viên quản lý</strong> (Vào chức năng thống kê NCC - Module 2)
+            </a>
+            <a href="/login-as?role=NhanVienKho" class="winform-btn" style="text-align: left; padding: 8px 12px;">
+                <strong>3. Nhân viên kho</strong> (Tài khoản thủ kho)
+            </a>
+            <a href="/login-as?role=NhanVienBanHang" class="winform-btn" style="text-align: left; padding: 8px 12px;">
+                <strong>4. Nhân viên bán hàng</strong> (Tài khoản phục vụ)
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

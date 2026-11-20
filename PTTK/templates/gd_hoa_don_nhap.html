@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Hóa đơn nhập nguyên liệu - RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 850px;">
+    <div class="winform-title" style="font-size: 20px;">
+        Hóa đơn nhập nguyên liệu
+    </div>
+
+    <!-- Thông tin chung hóa đơn outThongtinHDNhap dạng GroupBox -->
+    <div class="winform-groupbox">
+        <div class="winform-groupbox-title">Thông tin chung hóa đơn</div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 140px; padding: 4px 0;"><strong>Mã hóa đơn nhập:</strong></td>
+                <td><strong style="font-size: 15px;">{{ hoadon.mahoadonnhap }}</strong></td>
+                <td style="width: 130px; padding: 4px 0;"><strong>Ngày nhập:</strong></td>
+                <td><strong>{{ hoadon.ngaynhap }}</strong></td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;"><strong>Nhà cung cấp:</strong></td>
+                <td>{{ hoadon.nhacungcap.ten }} ({{ hoadon.nhacungcap.manhacungcap }})</td>
+                <td style="padding: 4px 0;"><strong>Thủ kho nhận:</strong></td>
+                <td>{{ hoadon.nhanvienkho.ten }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;"><strong>Địa chỉ NCC:</strong></td>
+                <td>{{ hoadon.nhacungcap.diachi }}</td>
+                <td style="padding: 4px 0;"><strong>Điện thoại NCC:</strong></td>
+                <td>{{ hoadon.nhacungcap.sdt }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;"><strong>Ghi chú:</strong></td>
+                <td colspan="3">{{ hoadon.ghichu }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Danh sách nguyên liệu chi tiết outDanhsachNLNhap dạng DataGridView -->
+    <div style="margin-top: 15px;">
+        <div style="margin-bottom: 6px;">
+            <strong>Chi tiết các mặt hàng nguyên liệu nhập:</strong>
+        </div>
+
+        <table class="winform-table">
+            <thead>
+                <tr>
+                    <th style="width: 45px;">STT</th>
+                    <th style="width: 85px;">Mã NL</th>
+                    <th>Tên nguyên liệu</th>
+                    <th style="width: 130px;">Phân loại</th>
+                    <th style="width: 70px; text-align: center;">ĐVT</th>
+                    <th style="width: 95px; text-align: right;">Số lượng</th>
+                    <th style="width: 110px; text-align: right;">Đơn giá nhập (đ)</th>
+                    <th style="width: 125px; text-align: right;">Thành tiền (đ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set total_qty = namespace(value=0) %}
+                {% for item in hoadon.danhsachchitiet %}
+                    {% set total_qty.value = total_qty.value + item.soluong %}
+                    <tr>
+                        <td style="text-align: center;">{{ loop.index }}</td>
+                        <td style="text-align: center;">{{ item.nguyenlieu.manguyenlieu }}</td>
+                        <td><strong>{{ item.nguyenlieu.tennguyenlieu }}</strong></td>
+                        <td>{{ item.nguyenlieu.phanloai }}</td>
+                        <td style="text-align: center;">{{ item.nguyenlieu.donvitinh }}</td>
+                        <td style="text-align: right; font-weight: bold;">{{ "{:,.2f}".format(item.soluong) }}</td>
+                        <td style="text-align: right;">{{ "{:,.0f}".format(item.dongianhap) }}</td>
+                        <td style="text-align: right; font-weight: bold;">{{ "{:,.0f}".format(item.thanhtien) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr style="font-weight: bold; background-color: #f0f0f0;">
+                    <td colspan="5" style="text-align: right;">TỔNG CỘNG:</td>
+                    <td style="text-align: right;">{{ "{:,.2f}".format(total_qty.value) }}</td>
+                    <td style="text-align: right;">-</td>
+                    <td style="text-align: right; font-size: 14px;">{{ "{:,.0f}".format(hoadon.tongtien) }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- Khung xác nhận và chữ ký kiểu WinForm -->
+    <div style="border: 1px solid #000000; padding: 10px; margin-top: 15px; background-color: #ffffff;">
+        <table style="width: 100%; text-align: center;">
+            <tr>
+                <td style="width: 33%; padding-bottom: 50px;"><strong>Đại diện Nhà Cung Cấp</strong><br>(Ký, ghi rõ họ tên)</td>
+                <td style="width: 33%; padding-bottom: 50px;"><strong>Thủ Kho Nhận Hàng</strong><br>(Ký, ghi rõ họ tên)</td>
+                <td style="width: 33%; padding-bottom: 50px;"><strong>Người Lập / Quản Lý</strong><br>(Ký, ghi rõ họ tên)</td>
+            </tr>
+            <tr>
+                <td>{{ hoadon.nhacungcap.ten }}</td>
+                <td>{{ hoadon.nhanvienkho.ten }}</td>
+                <td>Trần Thị Mai</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; justify-content: space-between; border-top: 1px solid #000000; padding-top: 12px;">
+        <button type="button" onclick="window.print()" class="winform-btn">
+            In hóa đơn
+        </button>
+
+        <!-- Nút subQuaylai -->
+        <form action="/chi-tiet-lan-nhap" method="GET" style="display: inline;">
+            <input type="hidden" name="id_ncc" value="{{ id_ncc }}">
+            <input type="hidden" name="ngaybatdau" value="{{ ngaybatdau }}">
+            <input type="hidden" name="ngayketthuc" value="{{ ngayketthuc }}">
+            <button type="submit" id="subQuaylai" name="subQuaylai" class="winform-btn" style="padding: 6px 20px;">
+                Quay lại Lịch sử nhập NCC
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

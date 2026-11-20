@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Chọn loại báo cáo thống kê - RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 600px;">
+    <div class="winform-title" style="font-size: 20px;">
+        Chọn loại báo cáo thống kê
+    </div>
+
+    <div style="padding: 10px 0 20px 0;">
+        <!-- Chức năng trọng tâm Module 2: Thống kê NCC theo lượng nhập -->
+        <form action="/thong-ke-nha-cung-cap" method="GET" style="margin-bottom: 12px;">
+            <button type="submit" id="subTKNhacungcap" name="subTKNhacungcap" value="Thống kê NCC theo lượng nhập" 
+                    class="winform-box-btn" style="border: 2px solid #000000; font-weight: bold; background-color: #f7f7f7; cursor: pointer;">
+                Thống kê nhà cung cấp theo lượng nhập
+            </button>
+        </form>
+
+        <!-- Các loại thống kê khác -->
+        <button type="button" onclick="alert('Chức năng Thống kê món ăn')" class="winform-box-btn" style="cursor: pointer;">
+            Thống kê món ăn
+        </button>
+
+        <button type="button" onclick="alert('Chức năng Thống kê nguyên liệu')" class="winform-box-btn" style="cursor: pointer;">
+            Thống kê nguyên liệu
+        </button>
+
+        <button type="button" onclick="alert('Chức năng Thống kê khách hàng')" class="winform-box-btn" style="cursor: pointer;">
+            Thống kê khách hàng
+        </button>
+    </div>
+
+    <div style="text-align: right; border-top: 1px solid #000000; padding-top: 15px;">
+        <!-- Nút subQuaylai -->
+        <form action="/quan-ly" method="GET" style="display: inline;">
+            <button type="submit" id="subQuaylai" name="subQuaylai" class="winform-btn" style="padding: 6px 20px;">
+                Quay lại Bàn làm việc QL
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

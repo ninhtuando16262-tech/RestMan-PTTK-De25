@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hệ Thống RestMan{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div style="max-width: 900px; margin: 0 auto;">
+        <!-- Thanh Menu Hệ Thống kiểu WinForm -->
+        <div class="winform-menubar">
+            <div>
+                <strong>HỆ THỐNG QUẢN LÝ NHÀ HÀNG (RESTMAN) - ĐỀ 25</strong>
+            </div>
+            <div>
+                {% if user %}
+                    {% if user.vaitro == 'KhachHang' %}
+                        <a href="/khach-hang" class="{% if active_page == 'gd_chinh_kh' %}active{% endif %}">Trang chủ KH</a>
+                        <a href="/tim-kiem-mon-an" class="{% if active_page == 'gd_thong_tin_mon_an' %}active{% endif %}">Tìm kiếm món ăn</a>
+                    {% elif user.vaitro == 'QuanLy' %}
+                        <a href="/quan-ly" class="{% if active_page == 'gd_chinh_ql' %}active{% endif %}">Bàn làm việc QL</a>
+                        <a href="/bao-cao-thong-ke" class="{% if active_page in ['gd_chon_thong_ke', 'gd_tk_nha_cung_cap'] %}active{% endif %}">Báo cáo thống kê</a>
+                    {% endif %}
+                    <span style="margin: 0 8px; color: #999;">|</span>
+                    <span>Người dùng: <strong>{{ user.ten }}</strong> ({{ user.vaitro }})</span>
+                    <a href="/logout" style="color: #000; margin-left: 8px;">[Đăng xuất]</a>
+                {% else %}
+                    <a href="/login">[Đăng nhập]</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Nội dung chính -->
+        {% block content %}{% endblock %}
+
+        <div class="winform-footer">
+            Hệ thống Quản lý nhà hàng RestMan - Phân tích thiết kế hệ thống (Đề số 25)
+        </div>
+    </div>
+</body>
+</html>

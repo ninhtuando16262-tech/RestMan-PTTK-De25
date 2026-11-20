@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Chi tiết món ăn - RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 650px;">
+    <div class="winform-title" style="font-size: 20px;">
+        Chi tiết món ăn
+    </div>
+
+    <!-- Thông tin món ăn outChitietmon dạng bảng WinForm -->
+    <div class="winform-groupbox" style="margin-bottom: 20px;">
+        <div class="winform-groupbox-title">Thông tin chi tiết</div>
+        <table class="winform-table" style="margin: 5px 0;">
+            <tr>
+                <td style="width: 140px; font-weight: bold; background-color: #f7f7f7;">Mã món ăn:</td>
+                <td><strong>{{ monan.mamon }}</strong></td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background-color: #f7f7f7;">Tên món ăn:</td>
+                <td style="font-size: 15px; font-weight: bold;">{{ monan.tenmon }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background-color: #f7f7f7;">Phân loại:</td>
+                <td>{{ monan.loai }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background-color: #f7f7f7;">Khẩu phần:</td>
+                <td>{{ monan.khauphan }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background-color: #f7f7f7;">Giá bán:</td>
+                <td style="font-size: 16px; font-weight: bold;">{{ "{:,.0f}".format(monan.giatien) }} VNĐ</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background-color: #f7f7f7;">Mô tả:</td>
+                <td style="line-height: 1.5;">{{ monan.mota }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background-color: #f7f7f7;">Trạng thái:</td>
+                <td><strong>{{ monan.trangthai }}</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" onclick="alert('Đã thêm món vào đơn đặt')" class="winform-btn" style="padding: 6px 16px;">
+            Đặt món này
+        </button>
+
+        <!-- Nút subQuaylai -->
+        <form action="/tim-kiem-mon-an" method="GET" style="display: inline;">
+            <button type="submit" id="subQuaylai" name="subQuaylai" class="winform-btn" style="padding: 6px 20px; font-weight: bold;">
+                Quay lại danh sách
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

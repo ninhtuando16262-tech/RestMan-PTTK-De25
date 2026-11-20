@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Bàn làm việc Quản lý - RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 600px;">
+    <div class="winform-title" style="font-size: 20px;">
+        Bàn làm việc Quản lý
+    </div>
+
+    <div style="padding: 10px 0 20px 0;">
+        <!-- Nút 1: Chọn xem thống kê (subXemthongke - Module 2) -->
+        <form action="/bao-cao-thong-ke" method="GET" style="margin-bottom: 12px;">
+            <button type="submit" id="subXemthongke" name="subXemthongke" value="Xem thống kê" class="winform-box-btn" style="border: 2px solid #000000; font-weight: bold; background-color: #f7f7f7; cursor: pointer;">
+                Xem báo cáo thống kê
+            </button>
+        </form>
+
+        <!-- Nút 2: Quản lý thông tin món ăn -->
+        <button type="button" onclick="alert('Chức năng Quản lý món ăn')" class="winform-box-btn" style="cursor: pointer;">
+            Quản lý thông tin món ăn
+        </button>
+
+        <!-- Nút 3: Lên menu món ăn dạng combo -->
+        <button type="button" onclick="alert('Chức năng Lên menu combo')" class="winform-box-btn" style="cursor: pointer;">
+            Lên menu món ăn dạng combo
+        </button>
+    </div>
+
+    <div class="winform-groupbox">
+        <div class="winform-groupbox-title">Thông tin nhân viên quản lý</div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="width: 140px; padding: 4px 0;">Họ và tên:</td>
+                <td><strong>{{ user.ten }}</strong></td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;">Chức vụ:</td>
+                <td>Nhân viên quản lý</td>
+            </tr>
+            <tr>
+                <td style="padding: 4px 0;">Số điện thoại:</td>
+                <td>{{ user.sdt }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

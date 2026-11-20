@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Thống kê nhà cung cấp theo lượng nhập - RestMan{% endblock %}
+
+{% block content %}
+<div class="winform-window" style="max-width: 900px;">
+    <div class="winform-title" style="font-size: 20px;">
+        Thống kê nhà cung cấp theo lượng nhập
+    </div>
+
+    <!-- Khung chọn khoảng thời gian kiểu WinForm GroupBox -->
+    <div class="winform-groupbox">
+        <div class="winform-groupbox-title">Thời gian thống kê</div>
+        <form action="/thong-ke-nha-cung-cap" method="GET">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 120px; padding: 6px 0;"><strong>Ngày bắt đầu:</strong></td>
+                    <td style="width: 200px; padding: 6px 10px;">
+                        <input type="date" id="inNgaybatdau" name="inNgaybatdau" class="winform-input" 
+                               value="{{ ngaybatdau or '' }}" required>
+                    </td>
+                    <td style="width: 120px; padding: 6px 0; text-align: right; padding-right: 10px;"><strong>Ngày kết thúc:</strong></td>
+                    <td style="width: 200px; padding: 6px 0;">
+                        <input type="date" id="inNgayketthuc" name="inNgayketthuc" class="winform-input" 
+                               value="{{ ngayketthuc or '' }}" required>
+                    </td>
+                    <td style="padding-left: 15px;">
+                        <!-- Nút subXemthongke -->
+                        <button type="submit" id="subXemthongke" name="subXemthongke" value="Xem thống kê" class="winform-btn" style="padding: 6px 16px; font-weight: bold;">
+                            Xem thống kê
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <!-- Thông báo lỗi nếu khoảng thời gian không hợp lệ -->
+    {% if error_message %}
+    <div class="winform-msgbox winform-msgbox-error">
+        <strong>LỖI:</strong> {{ error_message }}
+    </div>
+    {% endif %}
+
+    <!-- Bảng kết quả outlinkDanhsachNCC kiểu DataGridView / JTable -->
+    {% if has_searched and not error_message %}
+        <div style="margin-top: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong>Kết quả thống kê nhà cung cấp theo số lượng hàng nhập:</strong>
+                <span>Từ: <strong>{{ ngaybatdau }}</strong> đến: <strong>{{ ngayketthuc }}</strong></span>
+            </div>
+
+            {% if danhsach_ncc and danhsach_ncc|length > 0 %}
+                <table class="winform-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 45px;">STT</th>
+                            <th style="width: 75px;">Mã NCC</th>
+                            <th>Tên nhà cung cấp</th>
+                            <th>Địa chỉ</th>
+                            <th style="width: 100px;">Số điện thoại</th>
+                            <th style="width: 120px; text-align: right;">Tổng lượng nhập</th>
+                            <th style="width: 80px; text-align: center;">Số lần nhập</th>
+                            <th style="width: 120px; text-align: right;">Tổng tiền (đ)</th>
+                            <th style="width: 95px; text-align: center;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set total_qty = namespace(value=0) %}
+                        {% set total_money = namespace(value=0) %}
+                        {% for ncc in danhsach_ncc %}
+                            {% set total_qty.value = total_qty.value + ncc.tongsoluongnhap %}
+                            {% set total_money.value = total_money.value + ncc.tongtiennhap %}
+                            <tr>
+                                <td style="text-align: center;">{{ loop.index }}</td>
+                                <td style="text-align: center;"><strong>{{ ncc.manhacungcap }}</strong></td>
+                                <td><strong>{{ ncc.ten }}</strong></td>
+                                <td>{{ ncc.diachi }}</td>
+                                <td>{{ ncc.sdt }}</td>
+                                <td style="text-align: right; font-weight: bold;">{{ "{:,.1f}".format(ncc.tongsoluongnhap) }}</td>
+                                <td style="text-align: center;">{{ ncc.solannhap }}</td>
+                                <td style="text-align: right; font-weight: bold;">{{ "{:,.0f}".format(ncc.tongtiennhap) }}</td>
+                                <td style="text-align: center;">
+                                    <!-- Link outlinkDanhsachNCC: click chọn xem chi tiết lần nhập -->
+                                    <a href="/chi-tiet-lan-nhap?id_ncc={{ ncc.id }}&ngaybatdau={{ ngaybatdau }}&ngayketthuc={{ ngayketthuc }}" class="winform-btn" style="padding: 2px 6px; font-size: 12px;">
+                                        Xem chi tiết
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr style="font-weight: bold; background-color: #f0f0f0;">
+                            <td colspan="5" style="text-align: right;">TỔNG CỘNG:</td>
+                            <td style="text-align: right;">{{ "{:,.1f}".format(total_qty.value) }}</td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: right;">{{ "{:,.0f}".format(total_money.value) }}</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            {% else %}
+                <!-- Ngoại lệ: Không có dữ liệu trong khoảng thời gian này -->
+                <div class="winform-msgbox" style="text-align: center; padding: 20px;">
+                    <strong>Không có dữ liệu thống kê trong khoảng thời gian này</strong>
+                    <p style="margin: 6px 0 0 0; color: #555;">Không phát sinh giao dịch nhập hàng nào từ các nhà cung cấp từ ngày {{ ngaybatdau }} đến {{ ngayketthuc }}.</p>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 30px; border: 1px dashed #707070; margin-top: 15px;">
+            Nhập ngày bắt đầu và ngày kết thúc ở khung phía trên, sau đó nhấn nút <strong>"Xem thống kê"</strong>.
+        </div>
+    {% endif %}
+
+    <div style="margin-top: 20px; text-align: right; border-top: 1px solid #000000; padding-top: 12px;">
+        <!-- Nút subQuaylai -->
+        <form action="/bao-cao-thong-ke" method="GET" style="display: inline;">
+            <button type="submit" id="subQuaylai" name="subQuaylai" class="winform-btn" style="padding: 6px 20px;">
+                Quay lại Chọn loại báo cáo
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
